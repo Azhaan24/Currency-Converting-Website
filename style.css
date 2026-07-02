@@ -68,6 +68,9 @@ form input{
     font-size: 1.2rem;
     text-align: center;
 }
+.dropdown i{
+    cursor: pointer;
+}
 form button{
     display: block;
      margin: 0 auto;

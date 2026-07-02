@@ -3,6 +3,7 @@ const BASE_URL = "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/
 const dropdowns = document.querySelectorAll(".dropdown select");
 const btn = document.querySelector("form button");
 const message = document.querySelector(".message");
+const swapBtn = document.querySelector(".dropdown i");
 
 for(let select of dropdowns){
     for(currCode in countryList){
@@ -24,12 +25,25 @@ for(let select of dropdowns){
 const updateFlag = (element)=>{
     let currCode = element.value;
     let countryCode = countryList[currCode];
-    console.log(countryCode);
     let newSrc = `https://flagsapi.com/${countryCode}/shiny/64.png`
-    console.log(newSrc);
     let img = element.parentElement.querySelector("img");
     img.src = newSrc;
 }
+
+swapBtn.addEventListener("click", () => {
+
+    const fromSelect = document.querySelector(".from select");
+    const toSelect = document.querySelector(".to select");
+
+    const temp = fromSelect.value;
+    fromSelect.value = toSelect.value;
+    toSelect.value = temp;
+
+    updateFlag(fromSelect);
+    updateFlag(toSelect);
+
+});
+
 btn.addEventListener("click",async (evt)=>{
     evt.preventDefault();
     let amount = document.querySelector("form input");
